@@ -1,6 +1,6 @@
 {
     "name": "Insabhi Warehouse",
-    "version": "18.0.1.0.0",
+    "version": "19.0.1.0.0",
     "summary": "Show only internal locations in stock operations",
     "category": "Inventory",
     "author": "Brishti",
