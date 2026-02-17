@@ -8,14 +8,7 @@
     "depends": ["product","web","mail"],
     "data": [
         "views/login.xml",
-        # "views/product.xml"
     ],
-# 'assets': {
-#     'web.assets_backend': [
-#         'insabhi_warehouse/static/src/js/picking.js',
-#     ],
-# },
-
     "installable": True,
     "application": False,
 }

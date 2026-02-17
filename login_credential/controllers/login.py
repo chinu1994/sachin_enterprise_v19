@@ -11,8 +11,6 @@ class LoginWithOTP(Home):
     @http.route('/web/login', type='http', auth="public", website=True, sitemap=False)
     def web_login(self, redirect=None, **kw):
 
-        print("🔥 CUSTOM LOGIN CONTROLLER HIT 🔥")
-        print("KW VALUES:", kw)
 
         # =====================================================
         # STEP 1 → SEND OTP (DO NOT LOGIN HERE)
@@ -29,7 +27,6 @@ class LoginWithOTP(Home):
             request.session['login_otp'] = otp
             request.session['otp_user'] = kw.get('login')
             request.session['otp_user'] = email
-            print("GENERATED OTP:", otp)
             user = request.env['res.users'].sudo().search([
                 ('login', '=', email)
             ], limit=1)
@@ -62,9 +59,8 @@ class LoginWithOTP(Home):
 
             mail.sudo().send()
 
-            print("OTP EMAIL SENT")
 
-            # 🔴 IMPORTANT: DO NOT CALL SUPER()
+            #  IMPORTANT: DO NOT CALL SUPER()
             return request.render('web.login', {
                 'error': 'OTP Sent. Please enter OTP to login.',
                 'login': kw.get('login'),
@@ -79,38 +75,35 @@ class LoginWithOTP(Home):
             session_user = request.session.get('otp_user')
             entered_otp = kw.get('otp')
 
-            print("SESSION OTP:", session_otp)
-            print("ENTERED OTP:", entered_otp)
 
-            # ❌ If OTP not generated yet
+            # If OTP not generated yet
             if not session_otp:
                 return request.render('web.login', {
                     'error': 'Please click Send OTP first.'
                 })
 
-            # ❌ Wrong user
+            # Wrong user
             if kw.get('login') != session_user:
                 return request.render('web.login', {
                     'error': 'User mismatch. Generate OTP again.'
                 })
 
-            # ❌ No OTP entered
+            # No OTP entered
             if not entered_otp:
                 return request.render('web.login', {
                     'error': 'Please enter OTP.'
                 })
 
-            # ❌ Wrong OTP
+            # Wrong OTP
             if entered_otp != session_otp:
                 return request.render('web.login', {
                     'error': 'Invalid OTP.'
                 })
 
-            # ✅ OTP Correct → Clear session
+            # OTP Correct → Clear session
             request.session.pop('login_otp', None)
             request.session.pop('otp_user', None)
 
-            print("OTP VERIFIED → LOGIN ALLOWED")
 
             return super(LoginWithOTP, self).web_login(redirect=redirect, **kw)
 
