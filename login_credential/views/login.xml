@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <template id="login_inherit_admin_otp" inherit_id="web.login">
+        <xpath expr="//input[@name='login']" position="attributes">
+            <attribute name="id">login_email</attribute>
+            <attribute name="placeholder">Email</attribute>
+            </xpath>
+        <xpath expr="//form" position="inside">
+
+            <div class="mt-2">
+                <label>OTP</label>
+                <input type="text" name="otp" class="form-control"/>
+            </div>
+
+            <button type="submit"
+                    name="send_otp"
+                    value="1"
+                    class="btn btn-warning w-100 mt-2">
+                Send OTP
+            </button>
+
+        </xpath>
+    </template>
+</odoo>
+
+<!--</odoo>-->
+<!--<xpath expr="//input[@name='login']" position="attributes">-->
+<!--<attribute name="id">login_email</attribute>-->
+<!--<attribute name="placeholder">Email</attribute>-->
+<!--</xpath>-->
+<!--&lt;!&ndash;  Password Field  &ndash;&gt;-->
+<!--<xpath expr="//input[@name='password']" position="attributes">-->
+<!--<attribute name="id">login_password</attribute>-->
+<!--<attribute name="placeholder">Password</attribute>-->
+<!--</xpath>-->
+<!--&lt;!&ndash;  Before Login Button  &ndash;&gt;-->
+<!--<xpath expr="//button[@type='submit']" position="before">-->
+<!--<div class="form-group pb-3">-->
+<!--<button type="button" id="send_login_otp" class="btn btn-secondary btn-block "> Send OTP </button>-->
+<!--</div>-->
+<!--<div class="form-group pb-3">-->
+<!--<input type="text" name="login_otp" id="login_otp" class="form-control" placeholder="Enter OTP"/>-->
+<!--</div>-->
+<!--</xpath>-->
