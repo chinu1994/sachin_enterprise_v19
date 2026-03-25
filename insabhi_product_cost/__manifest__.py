@@ -4,7 +4,7 @@
     "summary": "Product Cost Price",
     "category": "Inventory",
     "author": "Brishti",
-    "depends": ["product"],
+    "depends": ["product",'sale','sale_management'],
     "data": [
         "views/groups.xml",
         "views/product.xml"
