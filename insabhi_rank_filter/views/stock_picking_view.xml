@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_picking_form_inherit_partner_domain" model="ir.ui.view">
+        <field name="name">stock.picking.form.partner.domain</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+
+            <!-- Computed domain field — invisible -->
+            <xpath expr="//field[@name='partner_id']" position="before">
+                <field name="partner_id_domain" invisible="1"/>
+            </xpath>
+
+            <!-- partner_id field pe domain apply -->
+            <xpath expr="//field[@name='partner_id']" position="attributes">
+                <attribute name="domain">partner_id_domain</attribute>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>
