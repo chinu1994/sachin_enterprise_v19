@@ -7,6 +7,12 @@
             <xpath expr="//field[@name='partner_id']" position="attributes">
                 <attribute name="domain">[('customer_rank', '>', 0)]</attribute>
             </xpath>
+            <xpath expr="//field[@name='partner_invoice_id']" position="attributes">
+                <attribute name="domain">[('customer_rank', '>', 0)]</attribute>
+            </xpath>
+            <xpath expr="//field[@name='partner_shipping_id']" position="attributes">
+                <attribute name="domain">[('customer_rank', '>', 0)]</attribute>
+            </xpath>
         </field>
     </record>
 </odoo>
