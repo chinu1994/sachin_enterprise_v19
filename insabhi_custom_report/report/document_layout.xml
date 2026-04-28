@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="external_layout_inherit_footer_center" inherit_id="web.external_layout_standard">
+        <xpath expr="//div[contains(@class, 'footer')]" position="attributes">
+            <attribute name="style" add="text-align: center;" separator=";"/>
+        </xpath>
+        <xpath expr="//div[contains(@class, 'footer')]//div[@t-field='company.report_footer']"
+               position="attributes">
+            <attribute name="class" remove="text-start" add="text-center" separator=" "/>
+        </xpath>
+    </template>
+</odoo>
