@@ -50,20 +50,62 @@ class MailActivity(models.Model):
 
                 activity_link = f'/web#id={record.id}&model={record._name}&view_type=form'
 
-                body = f'''
-                    Hello,<br/><br/>
+                body = f"""
+                           <div style="font-family: Arial, sans-serif;
+                                       font-size:14px;
+                                       color:#333;">
 
-                    This is a reminder regarding the activity
-                    <b>{activity.summary or ""}</b>
-                    with deadline <b>{activity.date_deadline}</b>.<br/><br/>
+                               <p>Hello,</p>
 
-                    Document: <b>{record.display_name}</b><br/>
-                    Assigned User: <b>{activity.user_id.name}</b><br/><br/>
+                               <p>
+                                   This is a reminder that an activity deadline
+                                   has been reached.
+                               </p>
 
-                    <a href="{activity_link}">
-                        Open Document
-                    </a>
-                '''
+                               <table cellpadding="5" cellspacing="0" border="0">
+
+                                   <tr>
+                                       <td><b>Document:</b></td>
+                                       <td>{record.display_name}</td>
+                                   </tr>
+
+                                   <tr>
+                                       <td><b>Activity:</b></td>
+                                       <td>{activity.summary or ''}</td>
+                                   </tr>
+
+                                   <tr>
+                                       <td><b>Deadline:</b></td>
+                                       <td>{activity.date_deadline}</td>
+                                   </tr>
+
+                                   <tr>
+                                       <td><b>Assigned To:</b></td>
+                                       <td>{activity.user_id.name}</td>
+                                   </tr>
+
+                               </table>
+
+                               <br/>
+
+                               <a href="{activity_link}"
+                                  style="
+                                       background-color:#875A7B;
+                                       color:white;
+                                       padding:10px 15px;
+                                       text-decoration:none;
+                                       border-radius:4px;
+                                       display:inline-block;
+                                  ">
+                                   Open Document
+                               </a>
+
+                               <br/><br/>
+
+                               <p>Thank you.</p>
+
+                           </div>
+                       """
 
                 mail_values = {
                     'subject': f'Reminder: Activity {activity.summary} is due',
