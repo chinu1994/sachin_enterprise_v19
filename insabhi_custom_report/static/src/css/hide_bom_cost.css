@@ -10,6 +10,7 @@
     display: none !important;
 }
 
+
 /* Empty th next to Quantity bhi hide */
 .o_mrp_bom_expandable thead th:empty + th.text-end[title*="cost"] {
     display: none !important;
