@@ -13,7 +13,7 @@
 
     'assets': {
         'web.assets_backend': [
-            'insabhi_product_cost/static/src/css/hide_bom_cost.css',
+            'insabhi_custom_report/static/src/css/hide_bom_cost.css',
         ],
     },
     'installable': True,

@@ -1,17 +1,31 @@
-/* BOM Overview - Cost column header hide */
-.o_mrp_bom_expandable thead th.text-end[title*="cost"],
-.o_mrp_bom_expandable thead th.text-end[title*="Cost"] {
+/*!* BOM Overview - Cost column header hide *!*/
+/*.o_mrp_bom_expandable thead th.text-end[title*="cost"],*/
+/*.o_mrp_bom_expandable thead th.text-end[title*="Cost"] {*/
+/*    display: none !important;*/
+/*}*/
+
+/*!* BOM Overview - Cost column data cells hide (last column) *!*/
+/*.o_mrp_bom_expandable tbody td.text-end:last-child,*/
+/*.o_mrp_bom_expandable tfoot td.text-end:last-child {*/
+/*    display: none !important;*/
+/*}*/
+
+
+/*!* Empty th next to Quantity bhi hide *!*/
+/*.o_mrp_bom_expandable thead th:empty + th.text-end[title*="cost"] {*/
+/*    display: none !important;*/
+/*}*/
+
+/* MO Overview - MO Cost aur BoM Cost hide */
+thead.o_mrp_mo_overview_thead th.text-end[title*="Cost based on related replenishments"],
+thead.o_mrp_mo_overview_thead th.text-end[title*="Cost based on the BoM"] {
     display: none !important;
 }
 
-/* BOM Overview - Cost column data cells hide (last column) */
-.o_mrp_bom_expandable tbody td.text-end:last-child,
-.o_mrp_bom_expandable tfoot td.text-end:last-child {
-    display: none !important;
-}
-
-
-/* Empty th next to Quantity bhi hide */
-.o_mrp_bom_expandable thead th:empty + th.text-end[title*="cost"] {
+/* MO Overview - Data rows last 2 columns hide */
+table tbody tr > td.text-end:nth-last-child(1),
+table tbody tr > td.text-end:nth-last-child(2),
+table tfoot tr > td.text-end:nth-last-child(1),
+table tfoot tr > td.text-end:nth-last-child(2) {
     display: none !important;
 }
