@@ -1,0 +1,16 @@
+/* BOM Overview - Cost column header hide */
+.o_mrp_bom_expandable thead th.text-end[title*="cost"],
+.o_mrp_bom_expandable thead th.text-end[title*="Cost"] {
+    display: none !important;
+}
+
+/* BOM Overview - Cost column data cells hide (last column) */
+.o_mrp_bom_expandable tbody td.text-end:last-child,
+.o_mrp_bom_expandable tfoot td.text-end:last-child {
+    display: none !important;
+}
+
+/* Empty th next to Quantity bhi hide */
+.o_mrp_bom_expandable thead th:empty + th.text-end[title*="cost"] {
+    display: none !important;
+}
