@@ -10,5 +10,11 @@
         "report/custom_report.xml",
         "report/document_layout.xml",
     ],
+
+    'assets': {
+        'web.assets_backend': [
+            'insabhi_custom_report/static/src/css/hide_bom_cost.css',
+        ],
+    },
     'installable': True,
 }
