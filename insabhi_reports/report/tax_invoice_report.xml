@@ -1,0 +1,635 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Paper Format -->
+    <record id="tax_invoice_report_paperformat" model="report.paperformat">
+        <field name="name">Tax Invoice Paper Format</field>
+        <field name="default" eval="False"/>
+        <field name="format">A4</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">10</field>
+        <field name="margin_bottom">10</field>
+        <field name="margin_left">10</field>
+        <field name="margin_right">10</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">0</field>
+        <field name="dpi">96</field>
+    </record>
+
+
+    <!-- Report Template -->
+    <template id="tax_invoice_report_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.basic_layout">
+                    <div class="page" style="font-size:14px;">
+                        <div style="text-align:center; margin-bottom:20px;">
+                            <h2 style="margin:0; font-weight:bold;text-decoration: underline;">
+                                TAX INVOICE
+                            </h2>
+                        `<div style="
+                            margin-top:8px;
+                            font-size:12px;
+                            text-align:center;
+                        ">
+
+                            <span style="margin-right:60px;">
+                                <input type="checkbox"
+                                       style="width:12px; height:12px; vertical-align:middle;"/>
+
+                                <span style="vertical-align:middle; margin-left:5px;">
+                                    ORIGINAL FOR RECIPIENT
+                                </span>
+                            </span>
+
+                            <span style="margin-right:60px;">
+                                <input type="checkbox"
+                                       style="width:12px; height:12px; vertical-align:middle;"/>
+
+                                <span style="vertical-align:middle; margin-left:5px;">
+                                    DUPLICATE FOR TRANSPORT
+                                </span>
+                            </span>
+
+                            <span style="margin-right:60px;">
+                                <input type="checkbox"
+                                       style="width:12px; height:12px; vertical-align:middle;"/>
+
+                                <span style="vertical-align:middle; margin-left:5px;">
+                                    TRIPLICATE
+                                </span>
+                            </span>
+
+                            <span>
+                                <input type="checkbox"
+                                       style="width:12px; height:12px; vertical-align:middle;"/>
+
+                                <span style="vertical-align:middle; margin-left:5px;">
+                                    EXTRA COPY
+                                </span>
+                            </span>
+
+                        </div>
+                        </div>
+
+                        <!-- Main Big Box -->
+
+                        <table style="
+                            width:100%;
+                            border-collapse:collapse;
+                            font-size:12px;
+                        ">
+
+                            <!-- ================= ROW 1 ================= -->
+                            <tr>
+
+                                <!-- LEFT -->
+                                <td style="
+                                    width:50%;
+                                    padding:5px 8px;
+                                    border-right:1px solid black;
+                                    vertical-align:middle;
+                                ">
+
+                                    <b>OUR BILLING GST NO:</b>
+
+                                    <t t-if="o.company_id.vat">
+                                        <span t-esc="o.company_id.vat"/>
+                                    </t>
+
+                                    <t t-else="">
+                                        -
+                                    </t>
+
+                                </td>
+
+
+                                <!-- RIGHT -->
+                                <td style="
+                                    width:50%;
+                                    padding:5px 8px;
+                                    vertical-align:middle;
+                                ">
+
+                                    <t t-if="o.company_id.name">
+                                        <b t-esc="o.company_id.name"/>
+                                    </t>
+
+                                    <t t-else="">
+                                        -
+                                    </t>
+
+                                </td>
+
+                            </tr>
+
+
+                            <!-- ================= ROW 2 ================= -->
+                            <tr>
+                                <!-- LEFT -->
+                                <td style="
+                                    padding:5px 8px;
+                                    border-top:1px solid black;
+                                    border-right:1px solid black;
+                                    vertical-align:middle;
+                                ">
+                                    <b>Invoice No :</b>
+                                    <t t-if="o.name">
+                                        <span t-esc="o.name"/>
+                                    </t>
+
+                                    <t t-else="">
+                                        -
+                                    </t>
+
+                                    <b>Date :</b>
+
+                                    <t t-if="o.invoice_date">
+                                        <span t-esc="o.invoice_date"/>
+                                    </t>
+                                    <t t-else="">
+                                        -
+                                    </t>
+                                </td>
+                                <!-- RIGHT -->
+                                <td style="
+                                    padding:5px 8px;
+                                    border-top:1px solid black;
+                                    vertical-align:middle;
+                                ">
+
+                                    <div>
+                                        <b>Purchase Order No. :</b>
+
+                                        <t t-if="o.invoice_origin">
+                                            <span t-esc="o.invoice_origin"/>
+                                        </t>
+
+                                        <t t-else="">
+                                            -
+                                        </t>
+
+                                    </div>
+
+                                    <div>
+                                        <b>Date :</b>
+
+                                        <t t-if="o.invoice_date">
+                                            <span t-esc="o.invoice_date"/>
+                                        </t>
+
+                                        <t t-else="">
+                                            -
+                                        </t>
+
+                                    </div>
+
+                                    <div>
+                                        <b>Reverse Charge (Y/N):</b>
+                                        No
+                                    </div>
+
+                                </td>
+
+                            </tr>
+
+
+                            <!-- ================= ROW 3 ================= -->
+                            <tr>
+
+                                <!-- BILL TO -->
+                                <td style="
+                                    padding:8px;
+                                    border-top:1px solid black;
+                                    border-right:1px solid black;
+                                    vertical-align:top;
+                                ">
+
+                                    <b>Detail Of Receiver (Billed To)</b>
+
+                                    <br/><br/>
+
+                                    <t t-if="o.partner_id.name">
+                                        <span t-esc="o.partner_id.name"/>
+                                        <br/>
+                                    </t>
+
+                                    <t t-if="o.partner_id.contact_address">
+                                        <span t-esc="o.partner_id.contact_address"/>
+                                        <br/>
+                                    </t>
+
+                                    <b>State Code:</b>
+
+                                    <t t-if="o.partner_id.state_id.code">
+                                        <span t-esc="o.partner_id.state_id.code"/>
+                                    </t>
+
+                                    <t t-else="">
+                                        -
+                                    </t>
+
+                                    <br/>
+
+                                    <b>GSTIN :</b>
+
+                                    <t t-if="o.partner_id.vat">
+                                        <span t-esc="o.partner_id.vat"/>
+                                    </t>
+
+                                    <t t-else="">
+                                        -
+                                    </t>
+
+                                </td>
+
+
+                                <!-- SHIP TO -->
+                                <td style="
+                                    padding:8px;
+                                    border-top:1px solid black;
+                                    vertical-align:top;
+                                ">
+
+                                    <b>Detail Of Consignee (Shipped To)</b>
+
+                                    <br/><br/>
+
+                                    <t t-if="o.partner_shipping_id.name or o.partner_id.name">
+                                        <span t-esc="o.partner_shipping_id.name or o.partner_id.name"/>
+                                        <br/>
+                                    </t>
+
+                                    <t t-if="o.partner_shipping_id.contact_address or o.partner_id.contact_address">
+                                        <span t-esc="o.partner_shipping_id.contact_address or o.partner_id.contact_address"/>
+                                        <br/>
+                                    </t>
+
+                                    <b>State Code:</b>
+
+                                    <t t-if="o.partner_shipping_id.state_id.code or o.partner_id.state_id.code">
+                                        <span t-esc="o.partner_shipping_id.state_id.code or o.partner_id.state_id.code"/>
+                                    </t>
+
+                                    <t t-else="">
+                                        -
+                                    </t>
+
+                                    <br/>
+
+                                    <b>GSTIN :</b>
+
+                                    <t t-if="o.partner_shipping_id.vat or o.partner_id.vat">
+                                        <span t-esc="o.partner_shipping_id.vat or o.partner_id.vat"/>
+                                    </t>
+
+                                    <t t-else="">
+                                        -
+                                    </t>
+
+                                </td>
+
+                            </tr>
+
+
+                            <!-- ================= ROW 4 ================= -->
+                            <tr>
+                                    <td style="
+                                        padding:5px 8px;
+                                        border-top:1px solid black;
+                                        border-right:1px solid black;
+                                        vertical-align:middle;
+                                    ">
+                                        <b>Job Work No :</b>
+                                        2627SEJS186
+
+                                    </td>
+                                    <td style="
+                                        padding:5px 8px;
+                                        border-top:1px solid black;
+                                        vertical-align:middle;
+                                    ">
+                                        <b>Place Of Supply :</b>
+                                        GUJARAT
+                                    </td>
+
+                            </tr>
+
+
+                            <!-- ================= ROW 5 ================= -->
+                            <tr>
+
+                                <td colspan="2" style="
+                                    padding:8px;
+                                    border-top:1px solid black;
+                                    vertical-align:top;
+                                ">
+
+                                    <b>
+                                        MFG UNIT INDORE
+                                        (THIS IS ONLY FOR TRANSPORTER NOT FOR BILLING PURPOSE)
+                                    </b>
+
+                                    <br/>
+
+                                    <b>SACHIN SHIMS PVT LTD</b>
+
+                                    <br/>
+
+                                    17L- 42L, MSME CLUSTER SECTOR NO.1
+                                    PITHAMPUR DHAR- 454775
+                                    INDORE MADHYA PRADESH INDIA.
+
+                                    <br/>
+
+                                    23ARXPS8309N1ZS
+
+                                </td>
+
+                            </tr>
+
+                        </table>
+                        <!-- Product Lines -->
+                        <br/>
+
+                        <table style="width:100%; border-collapse:collapse;" border="1">
+                        <thead>
+                            <tr style="background:#e6e6e6;">
+                                <th style="padding:8px;">Sr.no</th>
+                                <th style="padding:8px;">Description</th>
+                                <th style="padding:8px;">HSN Code</th>
+                                <th style="padding:8px;">Qty</th>
+                                <th style="padding:8px;">Rate</th>
+                                <th style="padding:8px;">Per</th>
+                                <th style="padding:8px;">Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-set="count" t-value="1"/>
+                            <t t-foreach="o.invoice_line_ids" t-as="line">
+                                <tr>
+                                    <!-- SR NO -->
+                                    <td style="padding:8px; text-align:center;">
+                                        <span t-esc="count"/>
+                                    </td>
+                                    <!-- DESCRIPTION -->
+                                    <td style="padding:8px;">
+                                        <t t-if="line.product_id.name">
+                                            <span t-esc="line.product_id.name"/>
+                                        </t>
+                                        <t t-else="">
+                                            -
+                                        </t>
+                                    </td>
+                                    <td style="padding:8px; text-align:center;">
+                                        <t t-if="line.product_id.l10n_in_hsn_code">
+                                            <span t-esc="line.product_id.l10n_in_hsn_code"/>
+                                        </t>
+                                        <t t-else="">
+                                            -
+                                        </t>
+                                    </td>
+                                    <td style="padding:8px; text-align:center;">
+                                        <t t-if="line.quantity">
+                                            <span t-esc="line.quantity"/>
+                                        </t>
+                                        <t t-else="">
+                                            0
+                                        </t>
+                                    </td>
+                                    <td style="padding:8px; text-align:right;">
+                                        <t t-if="line.price_unit">
+                                            <span t-esc="line.price_unit"/>
+                                        </t>
+                                        <t t-else="">
+                                            0.00
+                                        </t>
+                                    </td>
+                                    <td style="padding:8px; text-align:center;">
+                                        <t t-if="line.product_uom_id.name">
+                                            <span t-esc="line.product_uom_id.name"/>
+                                        </t>
+                                        <t t-else="">
+                                            Nos
+                                        </t>
+                                    </td>
+
+                                    <td style="padding:8px; text-align:right;">
+                                        <t t-if="line.price_subtotal">
+                                            <span t-esc="line.price_subtotal"/>
+                                        </t>
+                                        <t t-else="">
+                                            0.00
+                                        </t>
+                                    </td>
+                                </tr>
+                                <t t-set="count" t-value="count + 1"/>
+                            </t>
+                        </tbody>
+                    </table>
+                        <!-- Total -->
+                        <br/>
+                        <!-- TOTAL SECTION -->
+                        <table style="
+                            width:40%;
+                            float:right;
+                            font-size:12px;
+                            margin-top:10px;
+                            margin-right:20px;
+                            border-collapse:collapse;
+                        ">
+                            <!-- NET TOTAL -->
+                            <tr style="border-top:1px solid black;">
+                                <td style="padding:6px 8px;">
+                                    <b>Total Amount Net</b>
+                                </td>
+                                <td style="padding:6px 8px; text-align:right;">
+                                    <t t-if="o.amount_untaxed">
+                                        <span t-esc="o.amount_untaxed"/>
+                                    </t>
+                                    <t t-else="">
+                                        0.00
+                                    </t>
+
+                                </td>
+
+                            </tr>
+
+
+                            <!-- TAX -->
+                            <tr>
+
+                                <td style="padding:6px 8px;">
+
+                                    <b>
+
+                                        <t t-if="o.amount_tax">
+                                            <span t-esc="o.line_ids.filtered(lambda l: l.tax_line_id)[0].name"/>
+                                        </t>
+
+                                        <t t-else="">
+                                            Tax
+                                        </t>
+
+                                    </b>
+
+                                </td>
+
+                                <td style="padding:6px 8px; text-align:right;">
+
+                                    <t t-if="o.amount_tax">
+                                        <span t-esc="o.amount_tax"/>
+                                    </t>
+
+                                    <t t-else="">
+                                        0.00
+                                    </t>
+
+                                </td>
+
+                            </tr>
+
+
+                            <!-- GRAND TOTAL -->
+                            <tr>
+
+                                <td style="padding:6px 8px;">
+                                    <b>Total Price</b>
+                                </td>
+
+                                <td style="padding:6px 8px; text-align:right;">
+
+                                    <b>
+
+                                        <t t-if="o.amount_total">
+                                            <span t-esc="o.amount_total"/>
+                                        </t>
+
+                                        <t t-else="">
+                                            0.00
+                                        </t>
+
+                                    </b>
+
+                                </td>
+
+                            </tr>
+
+                        </table>
+
+                    <div style="
+                        width:100%;
+                        margin-top:10px;
+                        padding:8px 0;
+                        font-size:12px;
+                        border-bottom:1px solid black;
+                        clear:both;
+                    ">
+
+                        <div style="
+                            display:flex;
+                            align-items:center;
+                            border-top:1px solid black;
+                        ">
+
+                            <!-- LEFT -->
+                            <div>
+                                <b>Total Amount (in words):</b>
+                                <t t-if="o.currency_id.amount_to_text(o.amount_total)">
+                                    <span t-esc="o.currency_id.amount_to_text(o.amount_total)"/>
+                                </t>
+                                <t t-else="">
+                                    -
+                                </t>
+                            </div>
+
+                            <!-- RIGHT -->
+                            <div style="white-space:nowrap;">
+                                <b>Total Rs.</b>
+                                <t t-if="o.amount_total">
+                                    <span t-esc="o.amount_total"/>
+                                </t>
+                                <t t-else="">
+                                    0.00
+                                </t>
+
+                            </div>
+
+                        </div>
+                        <!-- BANK DETAILS & SIGNATURE -->
+
+                        <div style="
+                            width:100%;
+                            margin-top:15px;
+                            display:flex;
+                            justify-content:space-between;
+                            align-items:flex-start;
+                            font-size:12px;
+                            border-top:1px solid black;
+                        ">
+
+                            <!-- LEFT -->
+                            <div style="width:50%;">
+
+                                <t t-if="o.narration">
+                                    <span t-raw="o.narration"/>
+                                </t>
+
+                                <t t-else="">
+                                    BANK DETAILS:
+                                </t>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <!-- TERMS & CONDITIONS -->
+                    <div style="
+                        width:100%;
+                        margin-top:15px;
+                        font-size:11px;
+                        border-bottom:1px solid black;
+                    ">
+                        <strong>E. &amp; O. E. Subject to Mumbai Jurisdiction</strong>
+                        <br/>
+                        I/We hereby certify that my/our registration certificate under the GST Act 2017
+                        is in force on the date on which the sale of the goods specified in this tax invoice
+                        is made by me/us and that the transaction of sale covered by this tax invoice has
+                        been effected by me/us and it shall be accounted for in the turnover of sales while
+                        filing of return and the due tax, if any payable on sale has been paid or shall be paid.
+                    </div>
+                    </div>
+                </t>
+
+            </t>
+        </t>
+
+    </template>
+
+
+    <!-- Report Action -->
+    <record id="action_tax_invoice_report" model="ir.actions.report">
+
+        <field name="name">Tax Invoice</field>
+
+        <field name="model">account.move</field>
+
+        <field name="report_type">qweb-pdf</field>
+
+        <field name="report_name">insabhi_reports.tax_invoice_report_template</field>
+
+        <field name="report_file">insabhi_reports.tax_invoice_report_template</field>
+
+        <field name="binding_model_id" ref="account.model_account_move"/>
+
+        <field name="binding_type">report</field>
+
+        <field name="paperformat_id" ref="tax_invoice_report_paperformat"/>
+
+        <field name="print_report_name">
+            'Tax Invoice - %s' % (object.name)
+        </field>
+
+    </record>
+
+</odoo>
