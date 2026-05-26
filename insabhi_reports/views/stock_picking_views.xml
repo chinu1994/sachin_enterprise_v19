@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="stock_picking_form_inherit_boxes" model="ir.ui.view">
+    <field name="name">stock.picking.form.inherit.boxes</field>
+    <field name="model">stock.picking</field>
+    <field name="inherit_id" ref="stock.view_picking_form"/>
+    <field name="arch" type="xml">
+        <xpath expr="//page[@name='extra']/group" position="inside">
+
+            <group string="Job / Box Details">
+                <field name="job_sheet_no"/>
+                <field name="box_no"/>
+                <field name="total_box"/>
+                <field name="box_type"/>
+                <field name="box_size"/>
+            </group>
+        </xpath>
+    </field>
+</record>
+</odoo>
