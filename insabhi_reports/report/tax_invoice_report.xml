@@ -22,10 +22,10 @@
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="o">
                 <t t-call="web.basic_layout">
-                    <div class="page" style="font-size:14px;">
+                    <div class="page" style="font-family:Arial;">
                         <div style="text-align:center; margin-bottom:20px;">
-                            <h2 style="margin:0; font-weight:bold;text-decoration: underline;">
-                                TAX INVOICE
+                            <h2 style="margin:0; font-weight:bold;text-decoration: underline;font-size:16px;">
+                                Tax Invoice
                             </h2>
                         `<div style="
                             margin-top:8px;
@@ -89,6 +89,8 @@
                                     padding:5px 8px;
                                     border-right:1px solid black;
                                     vertical-align:middle;
+                                    font-weight:900;
+                                    font-size: 18px;
                                 ">
 
                                     <b>OUR BILLING GST NO:</b>
@@ -109,6 +111,8 @@
                                     width:50%;
                                     padding:5px 8px;
                                     vertical-align:middle;
+                                    font-weight:900;
+                                    font-size: 18px;
                                 ">
 
                                     <t t-if="o.company_id.name">
@@ -132,82 +136,75 @@
                                     border-top:1px solid black;
                                     border-right:1px solid black;
                                     vertical-align:middle;
+                                    font-size: 18px;
                                 ">
-                                    <b>Invoice No :</b>
                                     <t t-if="o.name">
-                                        <span t-esc="o.name"/>
+                                        <span t-esc="o.name" style="font-weight: 900;"/>
                                     </t>
 
-                                    <t t-else="">
+                                    <t t-else="" style="font-weight: 900;">
                                         -
                                     </t>
 
-                                    <b>Date :</b>
+                                    <span style="margin-left:25px;"></span>
+
 
                                     <t t-if="o.invoice_date">
-                                        <span t-esc="o.invoice_date"/>
+                                        <span t-esc="o.invoice_date" style="font-weight: 900;"/>
                                     </t>
-                                    <t t-else="">
+                                    <t t-else="" style="font-weight: 900;">
                                         -
                                     </t>
                                 </td>
-                                <!-- RIGHT -->
+                                <!-- RIGHT SIDE - ROW 2 -->
                                 <td style="
-                                    padding:5px 8px;
+                                    padding:0px 3px;
                                     border-top:1px solid black;
                                     vertical-align:middle;
+                                    font-weight: normal !important;
+                                    font-size: 13px;
                                 ">
 
-                                    <div>
-                                        <b>Purchase Order No. :</b>
-
+                                    <div style="margin-bottom: 1px;">
+                                        Purchase Order No. :
                                         <t t-if="o.invoice_origin">
                                             <span t-esc="o.invoice_origin"/>
                                         </t>
-
                                         <t t-else="">
-                                            -
+                                            <span>-</span>
                                         </t>
-
                                     </div>
 
-                                    <div>
-                                        <b>Date :</b>
-
+                                    <div style="margin-bottom: 1px;">
+                                        Date :
                                         <t t-if="o.invoice_date">
                                             <span t-esc="o.invoice_date"/>
                                         </t>
-
                                         <t t-else="">
-                                            -
+                                            <span>-</span>
                                         </t>
-
                                     </div>
 
                                     <div>
-                                        <b>Reverse Charge (Y/N):</b>
-                                        No
+                                        Reverse Charge (Y/N):
+                                        <span>No</span>
                                     </div>
 
                                 </td>
-
                             </tr>
-
-
                             <!-- ================= ROW 3 ================= -->
                             <tr>
 
                                 <!-- BILL TO -->
                                 <td style="
-                                    padding:8px;
+                                    padding:3px 4px;
                                     border-top:1px solid black;
                                     border-right:1px solid black;
                                     vertical-align:top;
                                 ">
 
-                                    <b>Detail Of Receiver (Billed To)</b>
-
-                                    <br/><br/>
+                                    <b style="font-weight: 900;font-size:14px">Detail Of Receiver (Billed To)</b>
+                                    <br/>
 
                                     <t t-if="o.partner_id.name">
                                         <span t-esc="o.partner_id.name"/>
@@ -219,7 +216,7 @@
                                         <br/>
                                     </t>
 
-                                    <b>State Code:</b>
+                                    <span>State Code:</span>
 
                                     <t t-if="o.partner_id.state_id.code">
                                         <span t-esc="o.partner_id.state_id.code"/>
@@ -231,7 +228,7 @@
 
                                     <br/>
 
-                                    <b>GSTIN :</b>
+                                    <span>GSTIN :</span>
 
                                     <t t-if="o.partner_id.vat">
                                         <span t-esc="o.partner_id.vat"/>
@@ -246,14 +243,13 @@
 
                                 <!-- SHIP TO -->
                                 <td style="
-                                    padding:8px;
+                                    padding:3px 4px;
                                     border-top:1px solid black;
                                     vertical-align:top;
                                 ">
 
-                                    <b>Detail Of Consignee (Shipped To)</b>
-
-                                    <br/><br/>
+                                    <b style="font-weight: 1200;font-size: 14px;">Detail Of Consignee (Shipped To)</b>
+                                    <br/>
 
                                     <t t-if="o.partner_shipping_id.name or o.partner_id.name">
                                         <span t-esc="o.partner_shipping_id.name or o.partner_id.name"/>
@@ -265,7 +261,7 @@
                                         <br/>
                                     </t>
 
-                                    <b>State Code:</b>
+                                    <span>State Code:</span>
 
                                     <t t-if="o.partner_shipping_id.state_id.code or o.partner_id.state_id.code">
                                         <span t-esc="o.partner_shipping_id.state_id.code or o.partner_id.state_id.code"/>
@@ -277,7 +273,7 @@
 
                                     <br/>
 
-                                    <b>GSTIN :</b>
+                                    <span>GSTIN :</span>
 
                                     <t t-if="o.partner_shipping_id.vat or o.partner_id.vat">
                                         <span t-esc="o.partner_shipping_id.vat or o.partner_id.vat"/>
@@ -295,21 +291,20 @@
                             <!-- ================= ROW 4 ================= -->
                             <tr>
                                     <td style="
-                                        padding:5px 8px;
                                         border-top:1px solid black;
                                         border-right:1px solid black;
                                         vertical-align:middle;
                                     ">
-                                        <b>Job Work No :</b>
+                                        <span>Job Work No :</span>
                                         2627SEJS186
 
                                     </td>
                                     <td style="
-                                        padding:5px 8px;
+                                        padding:1px 3px;
                                         border-top:1px solid black;
                                         vertical-align:middle;
                                     ">
-                                        <b>Place Of Supply :</b>
+                                        <span>Place Of Supply :</span>
                                         GUJARAT
                                     </td>
 
@@ -320,19 +315,19 @@
                             <tr>
 
                                 <td colspan="2" style="
-                                    padding:8px;
+                                    padding:0px;
                                     border-top:1px solid black;
                                     vertical-align:top;
                                 ">
 
-                                    <b>
+                                    <span>
                                         MFG UNIT INDORE
                                         (THIS IS ONLY FOR TRANSPORTER NOT FOR BILLING PURPOSE)
-                                    </b>
+                                    </span>
 
                                     <br/>
 
-                                    <b>SACHIN SHIMS PVT LTD</b>
+                                    <span>SACHIN SHIMS PVT LTD</span>
 
                                     <br/>
 
@@ -355,13 +350,13 @@
                         <table style="width:100%; border-collapse:collapse;" border="1">
                         <thead>
                             <tr style="background:#e6e6e6;">
-                                <th style="padding:8px;">Sr.no</th>
-                                <th style="padding:8px;">Description</th>
-                                <th style="padding:8px;">HSN Code</th>
-                                <th style="padding:8px;">Qty</th>
-                                <th style="padding:8px;">Rate</th>
-                                <th style="padding:8px;">Per</th>
-                                <th style="padding:8px;">Amount</th>
+                                <th style="padding:8px;font-weight: 900;">Sr.no</th>
+                                <th style="padding:8px;font-weight: 900;">Description</th>
+                                <th style="padding:8px;font-weight: 900;">HSN Code</th>
+                                <th style="padding:8px;font-weight: 900;">Qty</th>
+                                <th style="padding:8px;font-weight: 900;">Rate</th>
+                                <th style="padding:8px;font-weight: 900;">Per</th>
+                                <th style="padding:8px;font-weight: 900;">Amount</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -373,7 +368,7 @@
                                         <span t-esc="count"/>
                                     </td>
                                     <!-- DESCRIPTION -->
-                                    <td style="padding:8px;">
+                                    <td style="padding:8px;text-align:center;">
                                         <t t-if="line.product_id.name">
                                             <span t-esc="line.product_id.name"/>
                                         </t>
@@ -397,7 +392,7 @@
                                             0
                                         </t>
                                     </td>
-                                    <td style="padding:8px; text-align:right;">
+                                    <td style="padding:8px; text-align:center;">
                                         <t t-if="line.price_unit">
                                             <span t-esc="line.price_unit"/>
                                         </t>
@@ -414,7 +409,7 @@
                                         </t>
                                     </td>
 
-                                    <td style="padding:8px; text-align:right;">
+                                    <td style="padding:8px; text-align:center;">
                                         <t t-if="line.price_subtotal">
                                             <span t-esc="line.price_subtotal"/>
                                         </t>
@@ -430,52 +425,74 @@
                         <!-- Total -->
                         <br/>
                         <!-- TOTAL SECTION -->
-                        <table style="
+
+                        <div style="
                             width:40%;
                             float:right;
                             font-size:12px;
                             margin-top:10px;
                             margin-right:20px;
-                            border-collapse:collapse;
+                            display:table;
                         ">
+
                             <!-- NET TOTAL -->
-                            <tr style="border-top:1px solid black;">
-                                <td style="padding:6px 8px;">
-                                    <b>Total Amount Net</b>
-                                </td>
-                                <td style="padding:6px 8px; text-align:right;">
+                            <div style="display:table-row;">
+
+                                <div style="
+                                    display:table-cell;
+                                    padding:6px 8px;
+                                    text-align:left;
+                                ">
+                                    <span>Total Amount Net</span>
+                                </div>
+
+                                <div style="
+                                    display:table-cell;
+                                    padding:6px 80px 6px 8px;
+                                    text-align:right;
+                                ">
+
                                     <t t-if="o.amount_untaxed">
                                         <span t-esc="o.amount_untaxed"/>
                                     </t>
+
                                     <t t-else="">
                                         0.00
                                     </t>
 
-                                </td>
+                                </div>
 
-                            </tr>
+                            </div>
 
 
                             <!-- TAX -->
-                            <tr>
+                            <div style="display:table-row;">
 
-                                <td style="padding:6px 8px;">
+                                <div style="
+                                    display:table-cell;
+                                    padding:6px 80px 6px 8px;
+                                    text-align:left;
+                                ">
 
-                                    <b>
-
+                                    <span>
+                                        Add:
                                         <t t-if="o.amount_tax">
                                             <span t-esc="o.line_ids.filtered(lambda l: l.tax_line_id)[0].name"/>
                                         </t>
 
                                         <t t-else="">
-                                            Tax
+                                            -
                                         </t>
 
-                                    </b>
+                                    </span>
 
-                                </td>
+                                </div>
 
-                                <td style="padding:6px 8px; text-align:right;">
+                                <div style="
+                                    display:table-cell;
+                                    padding:6px 80px 6px 8px;
+                                    text-align:right;
+                                ">
 
                                     <t t-if="o.amount_tax">
                                         <span t-esc="o.amount_tax"/>
@@ -485,39 +502,50 @@
                                         0.00
                                     </t>
 
-                                </td>
+                                </div>
 
-                            </tr>
+                            </div>
 
 
                             <!-- GRAND TOTAL -->
-                            <tr>
+                        <div style="
+                            display:table-row;
+                        ">
 
-                                <td style="padding:6px 8px;">
-                                    <b>Total Price</b>
-                                </td>
+                            <div style="
+                                display:table-cell;
+                                padding:6px 8px;
+                                text-align:left;
+                            ">
+                                <span>Total Price</span>
+                            </div>
 
-                                <td style="padding:6px 8px; text-align:right;">
+                            <div style="
+                                display:table-cell;
+                                padding:6px 80px 6px 8px;
+                                text-align:right;
+                                width:10%;
+                                border-top:1px solid #000;
+                            ">
 
-                                    <b>
+                                <span>
 
-                                        <t t-if="o.amount_total">
-                                            <span t-esc="o.amount_total"/>
-                                        </t>
+                                    <t t-if="o.amount_total">
+                                        <span t-esc="o.amount_total"/>
+                                    </t>
 
-                                        <t t-else="">
-                                            0.00
-                                        </t>
+                                    <t t-else="">
+                                        0.00
+                                    </t>
 
-                                    </b>
+                                </span>
 
-                                </td>
+                            </div>
 
-                            </tr>
+                        </div>
 
-                        </table>
-
-                    <div style="
+                        </div>
+                        <div style="
                         width:100%;
                         margin-top:10px;
                         padding:8px 0;
@@ -526,29 +554,43 @@
                         clear:both;
                     ">
 
-                        <div style="
-                            display:flex;
-                            align-items:center;
+                     <div style="
+                            width:100%;
                             border-top:1px solid black;
+                            overflow:hidden;
+                            padding-top:5px;
                         ">
-
                             <!-- LEFT -->
-                            <div>
-                                <b>Total Amount (in words):</b>
+                            <div style="
+                                float:left;
+                                width:70%;
+                            ">
+                                <span>Total Amount (in words):</span>
+
                                 <t t-if="o.currency_id.amount_to_text(o.amount_total)">
                                     <span t-esc="o.currency_id.amount_to_text(o.amount_total)"/>
                                 </t>
+
                                 <t t-else="">
                                     -
                                 </t>
                             </div>
 
                             <!-- RIGHT -->
-                            <div style="white-space:nowrap;">
-                                <b>Total Rs.</b>
+                            <div style="
+                                float:right;
+                                width:30%;
+                                text-align:right;
+                                white-space:nowrap;
+                                padding-right:90px;
+                            ">
+
+                                <span style="padding-right:65px;">Total Rs.</span>
+
                                 <t t-if="o.amount_total">
                                     <span t-esc="o.amount_total"/>
                                 </t>
+
                                 <t t-else="">
                                     0.00
                                 </t>
@@ -556,51 +598,64 @@
                             </div>
 
                         </div>
-                        <!-- BANK DETAILS & SIGNATURE -->
+                   <!-- BANK DETAILS & SIGNATURE -->
+                    <div style="
+                        width:100%;
+                        margin-top:15px;
+                        font-size:12px;
+                        border-top:1px solid black;
+                        position:relative;
+                        min-height:90px;
+                    ">
 
+                        <!-- LEFT -->
                         <div style="
-                            width:100%;
-                            margin-top:15px;
-                            display:flex;
-                            justify-content:space-between;
-                            align-items:flex-start;
-                            font-size:12px;
-                            border-top:1px solid black;
+                            width:60%;
+                            font-weight:900;
+                            font-size:14px;
                         ">
+                            <span>Bank Details:</span>
 
-                            <!-- LEFT -->
-                            <div style="width:50%;">
+                            <t t-if="o.narration">
+                                <span t-raw="o.narration"/>
+                            </t>
 
-                                <t t-if="o.narration">
-                                    <span t-raw="o.narration"/>
-                                </t>
-
-                                <t t-else="">
-                                    BANK DETAILS:
-                                </t>
-                            </div>
-                            <div style="text-align:right;margin-top:-10px;">
-                                <b>For</b>
-                                <t t-if="o.company_id.name">
-                                    <span t-esc="o.company_id.name"/>
-                                </t>
-
-                                <t t-else="">
-                                    -
-                                </t>
-
-                            </div>
+                            <t t-else="">
+                                BANK DETAILS:
+                            </t>
                         </div>
+
+                        <!-- RIGHT -->
+                        <div style="
+                            position:absolute;
+                            right:0;
+                            bottom:62px;
+                            text-align:right;
+                            font-weight:900;
+                            font-size:14px;
+                        ">
+                            <span>For </span>
+
+                            <t t-if="o.company_id.name">
+                                <span t-esc="o.company_id.name"/>
+                            </t>
+
+                            <t t-else="">
+                                -
+                            </t>
+                        </div>
+
+                    </div>
 
                     </div>
                     <!-- TERMS & CONDITIONS -->
                     <div style="
                         width:100%;
-                        margin-top:15px;
+                        margin-top:10px;
                         font-size:11px;
                         border-bottom:1px solid black;
                     ">
-                        <strong>E. &amp; O. E. Subject to Mumbai Jurisdiction</strong>
+                        <strong style="font-weight: 900;font-size:14px">E. &amp; O. E. Subject to Mumbai Jurisdiction</strong>
                         <br/>
                         I/We hereby certify that my/our registration certificate under the GST Act 2017
                         is in force on the date on which the sale of the goods specified in this tax invoice

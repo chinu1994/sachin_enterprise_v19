@@ -118,12 +118,12 @@
                                        <div style="
                                             font-weight:bold;
                                             font-size:15px;
-                                            padding-right:86px;
+                                            padding-right:105px;
                                             white-space:nowrap;
                                         ">
                                             ISO 9000:2015 UDYAM-MH-18-0012280
                                         </div><br/>
-                                        <div t-if="doc.company_id.phone">
+                                        <div t-if="doc.company_id.phone" style="margin-right: 70px; font-weight:900;font-size: 16px;">
                                             <svg xmlns="http://www.w3.org/2000/svg"
                                                  width="14" height="14"
                                                  viewBox="0 0 24 24"
@@ -139,7 +139,7 @@
                                             <span t-esc="doc.company_id.phone"/>
                                         </div>
 
-                                        <div t-if="doc.company_id.email">
+                                        <div t-if="doc.company_id.email" style="margin-right: 55px; font-weight:900;font-size: 16px;">
                                             <svg xmlns="http://www.w3.org/2000/svg"
                                                  width="14" height="14"
                                                  viewBox="0 0 24 24"
@@ -156,7 +156,7 @@
                                             <span style="padding-right: 80px;" t-esc="doc.company_id.email"/>
                                         </div>
 
-                                        <div t-if="doc.company_id.website">
+                                        <div t-if="doc.company_id.website" style="margin-right: 62px; font-weight:900;font-size: 15px;">
                                             <svg xmlns="http://www.w3.org/2000/svg"
                                                  width="14" height="14"
                                                  viewBox="0 0 24 24"
@@ -187,111 +187,119 @@
                             <h2 style="margin:0; font-weight:bold;text-decoration: underline;">PACKING LIST</h2>
 
                         </div>
-                        <div style="border:1px solid #000; padding:10px; margin-top:15px; font-size:13px; line-height:18px;">
+                        <div style="border:1px solid #000;margin-top:15px; font-size:13px; line-height:18px;">
 
-                    <table style="width:100%; border-collapse:collapse;">
+                        <table style="width:100%; border-collapse:collapse;">
 
-                        <!-- TOP ROW -->
-                        <tr style="font-weight:bold;">
+                            <!-- TOP ROW -->
+                           <tr style="font-weight:bold;">
 
-                            <!-- LEFT: Packing List -->
-                            <td style="width:50%; text-align:left;">
+                                <!-- LEFT: Packing List -->
+                                <td style="width:50%; text-align:left;">
 
-                                <span t-if="doc.name">
+                                    <span t-if="doc.name" style="padding-left: 10px;">
+                                        Invoice No:
+                                        <t t-if="doc.sale_id and doc.sale_id.invoice_ids">
+                                            <span t-esc="doc.sale_id.invoice_ids[0].name"/>
+                                        </t>
+                                        <t t-else="">
+                                            -
+                                        </t>
+                                    </span>
+
+                                </td>
+
+                                <!-- RIGHT: Invoice -->
+                                <td style="width: 50%;padding-left: 10px;">
                                     Packing List No : <span t-esc="doc.name"/>
-                                </span>
+                                </td>
 
-                            </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="padding: 0; margin: 0;">
+                                    <div style="
+                                        border-top: 1px solid black;
+                                        width: 100%;
+                                        height: 1px;
+                                    "></div>
+                                </td>
+                            </tr>
+                            <tr>
 
-                            <!-- RIGHT: Invoice -->
-                            <td style="width: 50%;padding-left: 10px;">
-                                Invoice No:
-                                <t t-if="doc.sale_id and doc.sale_id.invoice_ids">
-                                    <span t-esc="doc.sale_id.invoice_ids[0].name"/>
-                                </t>
-                                <t t-else="">
-                                    -
-                                </t>
-                            </td>
-
-                        </tr>
-                        <!-- MAIN CONTENT -->
-                        <tr>
-
-                            <!-- LEFT BLOCK -->
-                            <td style="vertical-align:top; width:50%;">
-                             <div>
-                                    <!-- CUSTOMER PO -->
-                                <t t-if="doc.sale_id and doc.sale_id.client_order_ref">
-                                    PO No. :
-                                    <span t-esc="doc.sale_id.client_order_ref"/>
-                                </t>
-                                    <!-- SO NUMBER -->
-                                    <t t-elif="doc.origin">
-                                        SO No. :
-                                        <span t-esc="doc.origin"/>
+                                <!-- LEFT BLOCK -->
+                                <td style="width:50%;padding-left:10px;">
+                                 <div>
+                                        <!-- CUSTOMER PO -->
+                                    <t t-if="doc.sale_id and doc.sale_id.client_order_ref">
+                                        PO No. :
+                                        <span t-esc="doc.sale_id.client_order_ref"/>
                                     </t>
-                                    <!-- NOTHING -->
-                                    <t t-else="">
-                                        -
-                                    </t>
-                                </div>
-                                <div>
-                                    Date : <span t-if="doc.scheduled_date" t-esc="doc.scheduled_date"/>
-                                </div>
+                                        <!-- SO NUMBER -->
+                                        <t t-elif="doc.origin">
+                                            SO No. :
+                                            <span t-esc="doc.origin"/>
+                                        </t>
+                                        <!-- NOTHING -->
+                                        <t t-else="">
+                                            -
+                                        </t>
+                                    </div>
+                                    <div>
+                                        Date : <span t-if="doc.scheduled_date" t-esc="doc.scheduled_date"/>
+                                    </div>
 
-                                <div>
-                                    Job Sheet No. : <span t-if="doc.job_sheet_no" t-esc="doc.job_sheet_no"/>
-                                </div>
+                                    <div>
+                                        Job Sheet No. : <span t-if="doc.job_sheet_no" t-esc="doc.job_sheet_no"/>
+                                    </div>
 
-                            </td>
+                                </td>
 
 
-                            <!-- RIGHT BLOCK -->
-                            <td style="vertical-align:top; width:50%;padding-left:10px; position:relative;">
-                                <div style="
-                                    position:absolute;
-                                    top:-30px;
-                                    bottom:-11px;
-                                    left:0;
-                                    width:1px;
-                                    background:#000;
-                                "></div>
-                                <div>
-                                    Box No. : <span t-if="doc.box_no" t-esc="doc.box_no"/>
-                                </div>
+                                <!-- RIGHT BLOCK -->
+                                <td style="vertical-align:top; width:50%;padding-left:10px; position:relative;">
+                                    <div style="
+                                        position:absolute;
+                                        top:-24px;
+                                        bottom:0;
+                                        left:0;
+                                        width:1px;
+                                        background:#000;
+                                    "></div>
+                                    <div>
+                                        Box No. : <span t-if="doc.box_no" t-esc="doc.box_no"/>
+                                    </div>
 
-                                <div>
-                                    Total Box : <span t-if="doc.total_box" t-esc="doc.total_box"/>
-                                </div>
+                                    <div>
+                                        Total Box : <span t-if="doc.total_box" t-esc="doc.total_box"/>
+                                    </div>
 
-                                <div>
-                                    Box Type : <span t-if="doc.box_type" t-esc="doc.box_type"/>
-                                </div>
+                                    <div>
+                                        Box Type : <span t-if="doc.box_type" t-esc="doc.box_type"/>
+                                    </div>
 
-                                <div>
-                                    Box Size : <span t-if="doc.box_size" t-esc="doc.box_size"/>
-                                </div>
-                            </td>
-                        </tr>
-                    </table>
+                                    <div>
+                                        Box Size : <span t-if="doc.box_size" t-esc="doc.box_size"/>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
                 </div>
                         <table style="width:100%; border-collapse:collapse;margin-top:15px;" border="1">
                             <thead>
-                        <tr style="background:#e6e6e6;">
+                        <tr>
 
                             <!-- SR NO -->
-                            <th style="padding:8px; width:10%; text-align:center;">
+                            <th style="padding:1px; width:10%; text-align:center;">
                                 Sr. No
                             </th>
 
                             <!-- DESCRIPTION -->
-                            <th style="padding:8px; width:70%; text-align:left;">
+                            <th style="padding:1px; width:70%; text-align:center;">
                                 Description
                             </th>
 
                             <!-- QUANTITY -->
-                            <th style="padding:8px; width:20%; text-align:center;">
+                            <th style="padding:1px; width:20%; text-align:center;">
                                 Quantity
                             </th>
 
@@ -306,12 +314,12 @@
                             <tr>
 
                                 <!-- SR NO -->
-                                <td style="padding:8px; text-align:center;">
+                                <td style="padding:1px; text-align:center;">
                                     <span t-esc="count"/>
                                 </td>
 
                                 <!-- DESCRIPTION -->
-                                <td style="padding:8px;">
+                                <td style="padding:1px;text-align:center;">
 
                                     <t t-if="line.product_id.name">
                                         <span t-esc="line.product_id.name"/>
@@ -324,7 +332,7 @@
                                 </td>
 
                                 <!-- QUANTITY -->
-                                <td style="padding:8px; text-align:center;">
+                                <td style="padding:1px; text-align:center;">
 
                                     <t t-if="line.quantity">
                                         <span t-esc="line.quantity"/>
@@ -381,7 +389,7 @@
                             <div>
                                 <b>Date :</b>
                                 <span t-if="doc.scheduled_date"
-                                  t-esc="doc.scheduled_date"/>
+                                      t-esc="doc.scheduled_date.strftime('%d/%m/%Y')"/>
                             </div>
                         </div>
                     </div>
