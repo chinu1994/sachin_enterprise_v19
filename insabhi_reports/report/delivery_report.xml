@@ -458,7 +458,8 @@
                         <!-- LEFT SIDE -->
                         <div style="width:50%; float:left;">
                             <div>
-                                <b>Place :</b> Mumbai
+                                <b>Place :</b>
+                                <span t-esc="doc.company_id.city or ''"/>
                             </div>
                             <br/>
                             <div>
