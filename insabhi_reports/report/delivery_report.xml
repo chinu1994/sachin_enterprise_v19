@@ -16,57 +16,74 @@
     <template id="report_delivery_yoga">
     <t t-call="web.html_container">
         <t t-foreach="docs" t-as="doc">
-
+            <t t-call="web.basic_layout">
     <div class="page" style="font-family: Arial;">
-
+        <div style="margin-bottom:5px;">
+            <img src="/insabhi_reports/static/src/image/hindi_text.png"
+                 style="width:50%; height:50px; display:block;padding-left: 80px;margin-left: 180px;"/>
+        </div>
         <!-- HEADER BAR -->
                 <div style="
                     width: 100%;
                     padding-bottom: 8px;
                     margin-bottom: 10px;
                 ">
+                    <div style="
+                        width:100%;
+                        overflow:hidden;
+                        border:none !important;
+                    ">
 
-                    <table style="width:100%;">
-                        <tr>
-
-                            <!-- LEFT SLOGAN -->
-                            <td style="width:70%; vertical-align:middle;">
-                                <div style="
-                                    font-size:19px;
-                                    font-weight:bold;
-                                    font-style:italic;
-                                    color:#333;
-                                ">
-                                    Pushing Aim Beyonds The Limits...
-                                </div>
-                            </td>
-
-                            <!-- RIGHT LOGO -->
-                            <td style="width:30%; text-align:right;">
-                                <img t-if="doc.company_id.logo"
-                                     t-att-src="image_data_uri(doc.company_id.logo)"
-                                     style="max-height:65px;"/>
-                            </td>
-
-                        </tr>
-                    </table>
-
-                </div>
-
-
-        <!-- COMPANY ADDRESS BLOCK -->
+                        <!-- LEFT SLOGAN -->
                         <div style="
-                            font-size:13px;
-                            line-height:18px;
-                            margin-bottom:20px;
-                            color:#444;
+                            width:70%;
+                            float:left;
+                            vertical-align:middle;
+                            border:none !important;
                         ">
-                            <table style="width:100%; border-collapse:collapse;">
 
-                                <tr>
+                            <div style="
+                                font-size:19px;
+                                font-weight:bold;
+                                font-style:italic;
+                                color:#333;
+                                border:none !important;
+                            ">
+                                Pushing Aim Beyonds The Limits...
+                            </div>
+
+                        </div>
+
+                        <!-- RIGHT LOGO -->
+                        <div style="
+                            width:30%;
+                            float:left;
+                            text-align:right;
+                            border:none !important;
+                        ">
+
+                            <img t-if="doc.company_id.logo"
+                                 t-att-src="image_data_uri(doc.company_id.logo)"
+                                 style="max-height:65px;font-size:14px;padding-left:50px;"/>
+                        </div>
+                    </div>
+                </div>
+        <!-- COMPANY ADDRESS BLOCK -->
+                       <div style="
+                                    width:100%;
+                                    font-size:13px;
+                                    line-height:18px;
+                                    margin-bottom:20px;
+                                    color:#444;
+                                    overflow:hidden;
+                                ">
 
                                     <!-- LEFT SIDE -->
-                                    <td style="width:60%; vertical-align:top;">
+                                    <div style="
+                                        width:60%;
+                                        float:left;
+                                        vertical-align:top;
+                                    ">
 
                                         <!-- COMPANY NAME -->
                                         <div style="font-weight:bold;font-size:18px;" t-if="doc.company_id.name">
@@ -110,77 +127,137 @@
 
                                         </div>
 
-                                    </td>
+                                    </div>
 
+                                 <!-- RIGHT SIDE -->
+                                    <div style="
+                                        width:40%;
+                                        float:left;
+                                        text-align:right;
+                                        vertical-align:top;
+                                    ">
 
-                                    <!-- RIGHT SIDE -->
-                                    <td style="width:40%; vertical-align:top; text-align:right;">
-                                       <div style="
+                                        <!-- ISO -->
+                                        <div style="
                                             font-weight:bold;
                                             font-size:15px;
                                             padding-right:105px;
                                             white-space:nowrap;
                                         ">
                                             ISO 9000:2015 UDYAM-MH-18-0012280
-                                        </div><br/>
-                                        <div t-if="doc.company_id.phone" style="margin-right: 70px; font-weight:900;font-size: 16px;">
-                                            <svg xmlns="http://www.w3.org/2000/svg"
-                                                 width="14" height="14"
-                                                 viewBox="0 0 24 24"
-                                                 fill="none"
-                                                 stroke="currentColor"
-                                                 stroke-width="2"
-                                                 stroke-linecap="round"
-                                                 stroke-linejoin="round"
-                                                 style="margin-right:6px;">
-
-                                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.08 4.18 2 2 0 0 1 4.06 2h3a2 2 0 0 1 2 1.72c.12.86.31 1.7.57 2.5a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.58-1.09a2 2 0 0 1 2.11-.45c.8.26 1.64.45 2.5.57A2 2 0 0 1 22 16.92z"/>
-                                            </svg>
-                                            <span t-esc="doc.company_id.phone"/>
                                         </div>
 
-                                        <div t-if="doc.company_id.email" style="margin-right: 55px; font-weight:900;font-size: 16px;">
-                                            <svg xmlns="http://www.w3.org/2000/svg"
-                                                 width="14" height="14"
-                                                 viewBox="0 0 24 24"
-                                                 fill="none"
-                                                 stroke="currentColor"
-                                                 stroke-width="2"
-                                                 stroke-linecap="round"
-                                                 stroke-linejoin="round"
-                                                 style="margin-right:12px;">
+                                        <br/>
 
-                                                <path d="M4 4h16v16H4z"/>
-                                                <path d="m22 6-10 7L2 6"/>
-                                            </svg>
-                                            <span style="padding-right: 80px;" t-esc="doc.company_id.email"/>
+                                        <!-- PHONE -->
+                                        <div t-if="doc.company_id.phone"
+                                             style="
+                                                margin-right:70px;
+                                                font-weight:900;
+                                                font-size:16px;
+                                                white-space:nowrap;
+                                             ">
+
+                                            <span style="
+                                                display:inline-block;
+                                                vertical-align:middle;
+                                                margin-right:6px;
+                                            ">
+                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                     width="14"
+                                                     height="14"
+                                                     viewBox="0 0 24 24"
+                                                     fill="none"
+                                                     stroke="currentColor"
+                                                     stroke-width="2"
+                                                     stroke-linecap="round"
+                                                     stroke-linejoin="round">
+
+                                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.08 4.18 2 2 0 0 1 4.06 2h3a2 2 0 0 1 2 1.72c.12.86.31 1.7.57 2.5a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.58-1.09a2 2 0 0 1 2.11-.45c.8.26 1.64.45 2.5.57A2 2 0 0 1 22 16.92z"/>
+                                                </svg>
+                                            </span>
+
+                                            <span style="display:inline-block; vertical-align:middle;"
+                                                  t-esc="doc.company_id.phone"/>
                                         </div>
 
-                                        <div t-if="doc.company_id.website" style="margin-right: 62px; font-weight:900;font-size: 15px;">
-                                            <svg xmlns="http://www.w3.org/2000/svg"
-                                                 width="14" height="14"
-                                                 viewBox="0 0 24 24"
-                                                 fill="none"
-                                                 stroke="currentColor"
-                                                 stroke-width="2"
-                                                 stroke-linecap="round"
-                                                 stroke-linejoin="round"
-                                                 style="margin-right:10px;">
+                                        <!-- EMAIL -->
+                                        <div t-if="doc.company_id.email"
+                                             style="
+                                                margin-right:55px;
+                                                font-weight:900;
+                                                font-size:16px;
+                                                white-space:nowrap;
+                                             ">
 
-                                                <circle cx="12" cy="12" r="10"/>
-                                                <path d="M2 12h20"/>
-                                                <path d="M12 2a15 15 0 0 1 0 20a15 15 0 0 1 0-20"/>
-                                            </svg>
-                                            <span style="padding-right: 60px;" t-esc="doc.company_id.website"/>
+                                            <span style="
+                                                display:inline-block;
+                                                vertical-align:middle;
+                                                margin-right:12px;
+                                            ">
+                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                     width="14"
+                                                     height="14"
+                                                     viewBox="0 0 24 24"
+                                                     fill="none"
+                                                     stroke="currentColor"
+                                                     stroke-width="2"
+                                                     stroke-linecap="round"
+                                                     stroke-linejoin="round">
+
+                                                    <path d="M4 4h16v16H4z"/>
+                                                    <path d="m22 6-10 7L2 6"/>
+                                                </svg>
+                                            </span>
+
+                                            <span style="
+                                                display:inline-block;
+                                                vertical-align:middle;
+                                                padding-right:80px;
+                                            "
+                                                  t-esc="doc.company_id.email"/>
                                         </div>
 
-                                    </td>
+                                        <!-- WEBSITE -->
+                                        <div t-if="doc.company_id.website"
+                                             style="
+                                                margin-right:62px;
+                                                font-weight:900;
+                                                font-size:15px;
+                                                white-space:nowrap;
+                                             ">
 
-                                </tr>
+                                            <span style="
+                                                display:inline-block;
+                                                vertical-align:middle;
+                                                margin-right:10px;
+                                            ">
+                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                     width="14"
+                                                     height="14"
+                                                     viewBox="0 0 24 24"
+                                                     fill="none"
+                                                     stroke="currentColor"
+                                                     stroke-width="2"
+                                                     stroke-linecap="round"
+                                                     stroke-linejoin="round">
 
-                            </table>
+                                                    <circle cx="12" cy="12" r="10"/>
+                                                    <path d="M2 12h20"/>
+                                                    <path d="M12 2a15 15 0 0 1 0 20a15 15 0 0 1 0-20"/>
+                                                </svg>
+                                            </span>
 
-                        </div>
+                                            <span style="
+                                                display:inline-block;
+                                                vertical-align:middle;
+                                                padding-right:60px;
+                                            "
+                                                  t-esc="doc.company_id.website"/>
+                                        </div>
+
+                                    </div>
+                            </div>
 
                          <!-- TITLE -->
                         <div style="text-align:center; margin-top:20px;">
@@ -218,7 +295,7 @@
                             <tr>
                                 <td colspan="2" style="padding: 0; margin: 0;">
                                     <div style="
-                                        border-top: 1px solid black;
+                                        border-top: 1px solid #ccc;
                                         width: 100%;
                                         height: 1px;
                                     "></div>
@@ -259,7 +336,7 @@
                                 <td style="vertical-align:top; width:50%;padding-left:10px; position:relative;">
                                     <div style="
                                         position:absolute;
-                                        top:-24px;
+                                        top:-19px;
                                         bottom:0;
                                         left:0;
                                         width:1px;
@@ -361,23 +438,21 @@
                         <div style="margin-bottom:20px;">
                             Assuring you of your best attention.Please go through the same and in case of any clarifications &amp; any discussion please feel free to contact us.
                         </div>
-                        <table style="width:100%; border-collapse:collapse; margin-top:25px;">
-                            <tr>
-                                <!-- LEFT SIDE -->
-                                <td style="width:50%; vertical-align:top;">
-                                    <div style="margin-top:10px; font-weight:bold;">
-                                        Checked By
-                                    </div>
-                                </td>
-                                <!-- RIGHT SIDE -->
-                                <td style="width:50%; vertical-align:top; text-align:left; padding-left:40px;">
-                                    <div style="font-weight:bold; margin-bottom:10px;">
-                                        Transport Details :
-                                    </div>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
+                        <div style="width:100%; margin-top:25px; overflow:hidden;">
+
+                            <!-- LEFT SIDE -->
+                            <div style="width:50%; float:left; font-weight:bold; margin-top:10px;">
+                                Checked By
+                            </div>
+
+                            <!-- RIGHT SIDE -->
+                            <div style="width:50%; float:left; font-weight:bold; padding-left:40px;">
+                                Transport Details :
+                            </div>
+
+                        </div>
+
+                        </div>
                     <div style="width:100%; margin-top:25px; overflow:hidden; font-size:13px;">
 
                         <!-- LEFT SIDE -->
@@ -396,6 +471,7 @@
                 </div>
             </t>
         </t>
+    </t>
     </template>
     <record id="action_delivery_yoga_report" model="ir.actions.report">
         <field name="name">Delivery Report</field>
