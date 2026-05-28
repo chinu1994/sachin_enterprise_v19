@@ -613,16 +613,14 @@
                             width:60%;
                             font-weight:900;
                             font-size:14px;
+                            margin-top:-10px;
                         ">
-                            <span>Bank Details:</span>
-
-                            <t t-if="o.narration">
-                                <span t-raw="o.narration"/>
-                            </t>
-
-                            <t t-else="">
+                            <div style="white-space:pre-line; font-size:13px; line-height:18px;">
                                 BANK DETAILS:
-                            </t>
+                                HDFC BANK LTD.
+                                A/C NO.: 05912000000447
+                                RTGS/NEFT IFSC: HDFC0000591
+                            </div>
                         </div>
 
                         <!-- RIGHT -->
