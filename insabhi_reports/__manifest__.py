@@ -9,8 +9,7 @@
             "report/tax_invoice_report.xml",
             "report/delivery_report.xml",
             "views/stock_picking_views.xml",
-
-
+            "views/res_compnay_views.xml",
     ],
 
     # 'assets': {

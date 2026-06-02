@@ -305,44 +305,13 @@
                                         vertical-align:middle;
                                     ">
                                         <span>Place Of Supply :</span>
-                                        GUJARAT
+                                        <span t-if="o.partner_id.state_id">
+                                            <t t-esc="o.partner_id.state_id.name"/>
+                                        </span>
+
                                     </td>
 
                             </tr>
-
-
-                            <!-- ================= ROW 5 ================= -->
-                            <tr>
-
-                                <td colspan="2" style="
-                                    padding:0px;
-                                    border-top:1px solid black;
-                                    vertical-align:top;
-                                ">
-
-                                    <span>
-                                        MFG UNIT INDORE
-                                        (THIS IS ONLY FOR TRANSPORTER NOT FOR BILLING PURPOSE)
-                                    </span>
-
-                                    <br/>
-
-                                    <span>SACHIN SHIMS PVT LTD</span>
-
-                                    <br/>
-
-                                    17L- 42L, MSME CLUSTER SECTOR NO.1
-                                    PITHAMPUR DHAR- 454775
-                                    INDORE MADHYA PRADESH INDIA.
-
-                                    <br/>
-
-                                    23ARXPS8309N1ZS
-
-                                </td>
-
-                            </tr>
-
                         </table>
                         <!-- Product Lines -->
                         <br/>
@@ -617,9 +586,7 @@
                         ">
                             <div style="white-space:pre-line; font-size:13px; line-height:18px;">
                                 BANK DETAILS:
-                                HDFC BANK LTD.
-                                A/C NO.: 05912000000447
-                                RTGS/NEFT IFSC: HDFC0000591
+                                <t t-esc="o.company_id.bank_details"/>
                             </div>
                         </div>
 
