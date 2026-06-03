@@ -77,7 +77,7 @@
                         <table style="
                             width:100%;
                             border-collapse:collapse;
-                            font-size:12px;
+                            font-size:10px;
                         ">
 
                             <!-- ================= ROW 1 ================= -->
@@ -167,8 +167,8 @@
 
                                     <div style="margin-bottom: 1px;">
                                         Purchase Order No. :
-                                        <t t-if="o.invoice_origin">
-                                            <span t-esc="o.invoice_origin"/>
+                                        <t t-if="o.po_no">
+                                            <span t-esc="o.po_no"/>
                                         </t>
                                         <t t-else="">
                                             <span>-</span>
@@ -296,7 +296,12 @@
                                         vertical-align:middle;
                                     ">
                                         <span>Job Work No :</span>
-                                        2627SEJS186
+                                        <t t-if="o.manufacturing_no">
+                                            <span t-esc="o.manufacturing_no"/>
+                                        </t>
+                                        <t t-else="">
+                                            -
+                                        </t>
 
                                     </td>
                                     <td style="
@@ -305,58 +310,27 @@
                                         vertical-align:middle;
                                     ">
                                         <span>Place Of Supply :</span>
-                                        GUJARAT
+                                        <span t-if="o.partner_id.state_id">
+                                            <t t-esc="o.partner_id.state_id.name"/>
+                                        </span>
+
                                     </td>
 
                             </tr>
-
-
-                            <!-- ================= ROW 5 ================= -->
-                            <tr>
-
-                                <td colspan="2" style="
-                                    padding:0px;
-                                    border-top:1px solid black;
-                                    vertical-align:top;
-                                ">
-
-                                    <span>
-                                        MFG UNIT INDORE
-                                        (THIS IS ONLY FOR TRANSPORTER NOT FOR BILLING PURPOSE)
-                                    </span>
-
-                                    <br/>
-
-                                    <span>SACHIN SHIMS PVT LTD</span>
-
-                                    <br/>
-
-                                    17L- 42L, MSME CLUSTER SECTOR NO.1
-                                    PITHAMPUR DHAR- 454775
-                                    INDORE MADHYA PRADESH INDIA.
-
-                                    <br/>
-
-                                    23ARXPS8309N1ZS
-
-                                </td>
-
-                            </tr>
-
                         </table>
                         <!-- Product Lines -->
                         <br/>
 
-                        <table style="width:100%; border-collapse:collapse;" border="1">
+                        <table style="width:100%; border-collapse:collapse;font-size:11px;margin-top:-5px;" border="1">
                         <thead>
                             <tr style="background:#e6e6e6;">
-                                <th style="padding:8px;font-weight: 900;">Sr.no</th>
-                                <th style="padding:8px;font-weight: 900;">Description</th>
-                                <th style="padding:8px;font-weight: 900;">HSN Code</th>
-                                <th style="padding:8px;font-weight: 900;">Qty</th>
-                                <th style="padding:8px;font-weight: 900;">Rate</th>
-                                <th style="padding:8px;font-weight: 900;">Per</th>
-                                <th style="padding:8px;font-weight: 900;">Amount</th>
+                                <th style="padding:2px;font-weight: 900;width:2%;">Sr.no</th>
+                                <th style="padding:2px;font-weight: 900;text-align:center;width: 44%;">Description</th>
+                                <th style="padding:2px;font-weight: 900;">HSN Code</th>
+                                <th style="padding:2px;font-weight: 900;">Qty</th>
+                                <th style="padding:2px;font-weight: 900;">Rate</th>
+                                <th style="padding:2px;font-weight: 900;">Per</th>
+                                <th style="padding:2px;font-weight: 900;">Amount</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -368,7 +342,7 @@
                                         <span t-esc="count"/>
                                     </td>
                                     <!-- DESCRIPTION -->
-                                    <td style="padding:8px;text-align:center;">
+                                    <td>
                                         <t t-if="line.product_id.name">
                                             <span t-esc="line.product_id.name"/>
                                         </t>
@@ -376,7 +350,7 @@
                                             -
                                         </t>
                                     </td>
-                                    <td style="padding:8px; text-align:center;">
+                                    <td style="text-align:center;">
                                         <t t-if="line.product_id.l10n_in_hsn_code">
                                             <span t-esc="line.product_id.l10n_in_hsn_code"/>
                                         </t>
@@ -430,7 +404,7 @@
                             width:40%;
                             float:right;
                             font-size:12px;
-                            margin-top:10px;
+                            margin-top:-15px;
                             margin-right:20px;
                             display:table;
                         ">
@@ -612,14 +586,12 @@
                         <div style="
                             width:60%;
                             font-weight:900;
-                            font-size:14px;
+                            font-size:13px;
                             margin-top:-10px;
                         ">
                             <div style="white-space:pre-line; font-size:13px; line-height:18px;">
                                 BANK DETAILS:
-                                HDFC BANK LTD.
-                                A/C NO.: 05912000000447
-                                RTGS/NEFT IFSC: HDFC0000591
+                                <t t-esc="o.company_id.bank_details"/>
                             </div>
                         </div>
 
@@ -649,11 +621,11 @@
                     <!-- TERMS & CONDITIONS -->
                     <div style="
                         width:100%;
-                        margin-top:10px;
+                        margin-top:4px;
                         font-size:11px;
                         border-bottom:1px solid black;
                     ">
-                        <strong style="font-weight: 900;font-size:14px">E. &amp; O. E. Subject to Mumbai Jurisdiction</strong>
+                        <strong style="font-weight: 900;font-size:13px">E. &amp; O. E. Subject to Mumbai Jurisdiction</strong>
                         <br/>
                         I/We hereby certify that my/our registration certificate under the GST Act 2017
                         is in force on the date on which the sale of the goods specified in this tax invoice
