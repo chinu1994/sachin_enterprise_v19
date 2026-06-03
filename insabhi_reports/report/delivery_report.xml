@@ -307,19 +307,12 @@
                                 <td style="width:50%;padding-left:10px;">
                                  <div>
                                         <!-- CUSTOMER PO -->
-                                    <t t-if="doc.sale_id and doc.sale_id.client_order_ref">
-                                        PO No. :
-                                        <span t-esc="doc.sale_id.client_order_ref"/>
+                                    <t t-if="doc.po_no">
+                                        PO No. : <span t-esc="doc.po_no"/>
                                     </t>
-                                        <!-- SO NUMBER -->
-                                        <t t-elif="doc.origin">
-                                            SO No. :
-                                            <span t-esc="doc.origin"/>
-                                        </t>
-                                        <!-- NOTHING -->
-                                        <t t-else="">
-                                            -
-                                        </t>
+                                    <t t-else="">
+                                        -
+                                    </t>
                                     </div>
                                     <div>
                                         Date : <span t-if="doc.scheduled_date" t-esc="doc.scheduled_date"/>

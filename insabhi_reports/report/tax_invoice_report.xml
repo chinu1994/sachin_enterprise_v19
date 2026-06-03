@@ -167,8 +167,8 @@
 
                                     <div style="margin-bottom: 1px;">
                                         Purchase Order No. :
-                                        <t t-if="o.invoice_origin">
-                                            <span t-esc="o.invoice_origin"/>
+                                        <t t-if="o.po_no">
+                                            <span t-esc="o.po_no"/>
                                         </t>
                                         <t t-else="">
                                             <span>-</span>
@@ -296,7 +296,12 @@
                                         vertical-align:middle;
                                     ">
                                         <span>Job Work No :</span>
-                                        2627SEJS186
+                                        <t t-if="o.manufacturing_no">
+                                            <span t-esc="o.manufacturing_no"/>
+                                        </t>
+                                        <t t-else="">
+                                            -
+                                        </t>
 
                                     </td>
                                     <td style="

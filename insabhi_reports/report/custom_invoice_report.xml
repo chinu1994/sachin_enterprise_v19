@@ -20,7 +20,9 @@
                     <div class="page">
 
                         <t t-foreach="docs" t-as="doc">
+                            <t t-set="idx" t-value="0"/>
                             <t t-foreach="doc.invoice_line_ids" t-as="line">
+                                <t t-set="idx" t-value="idx + 1"/>
 
                                 <div style="
                                     border:1px solid black;
@@ -36,7 +38,14 @@
                                         Inv :
                                         <span t-esc="doc.name"/>
                                     </span>
-
+                                     <span style="font-weight: normal !important;">
+                                        SR No :
+                                         <span t-esc="idx"/>
+                                     </span>
+                                    <span style="font-weight: normal !important;">
+                                         PO No.:
+                                         <span t-esc="doc.po_no"/>
+                                     </span>
                                     <span style="margin-left:2px;font-weight: normal !important;">
                                         Product :
                                         <span t-esc="line.product_id.name"/>
