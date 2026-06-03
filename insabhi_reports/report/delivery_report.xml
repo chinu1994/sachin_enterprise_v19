@@ -307,15 +307,13 @@
                                 <td style="width:50%;padding-left:10px;">
                                  <div>
                                         <!-- CUSTOMER PO -->
-                                    <t t-if="doc.po_no">
-                                        PO No. : <span t-esc="doc.po_no"/>
-                                    </t>
-                                    <t t-else="">
-                                        -
-                                    </t>
+                                     PO No. :
+                                    <span>
+                                        <t t-if="doc.po_no" t-esc="doc.po_no"/>
+                                    </span>
                                     </div>
                                     <div>
-                                        Date : <span t-if="doc.scheduled_date" t-esc="doc.scheduled_date"/>
+                                        Date : <span t-if="doc.scheduled_date" t-esc="doc.scheduled_date.date()"/>
                                     </div>
 
                                     <div>
