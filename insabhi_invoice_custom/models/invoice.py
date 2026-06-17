@@ -1,4 +1,4 @@
-from odoo import models, fields
+from odoo import api, fields, models
 
 
 class AccountMove(models.Model):
@@ -27,3 +27,36 @@ class AccountMove(models.Model):
         'attachment_id',
         string='MTC'
     )
+
+    def _sync_document_attachments(self):
+        for move in self:
+            attachments = (
+                move.insabhi_packing_list_doc_ids |
+                move.insabhi_LR_copy_doc_ids |
+                move.insabhi_MTC_doc_ids
+            )
+
+            attachments.write({
+                'res_model': 'account.move',
+                'res_id': move.id,
+            })
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        moves = super().create(vals_list)
+        moves._sync_document_attachments()
+        return moves
+
+    def write(self, vals):
+        res = super().write(vals)
+
+        attachment_fields = {
+            'insabhi_packing_list_doc_ids',
+            'insabhi_LR_copy_doc_ids',
+            'insabhi_MTC_doc_ids',
+        }
+
+        if attachment_fields.intersection(vals.keys()):
+            self._sync_document_attachments()
+
+        return res
