@@ -28,7 +28,11 @@ class AccountMove(models.Model):
         string='MTC'
     )
 
-    def _sync_document_attachments(self):
+    def _sync_attachments_to_chatter(self):
+        """
+        Ensure all attachments linked in custom fields
+        are also linked to the account.move record.
+        """
         for move in self:
             attachments = (
                 move.insabhi_packing_list_doc_ids |
@@ -44,7 +48,7 @@ class AccountMove(models.Model):
     @api.model_create_multi
     def create(self, vals_list):
         moves = super().create(vals_list)
-        moves._sync_document_attachments()
+        moves._sync_attachments_to_chatter()
         return moves
 
     def write(self, vals):
@@ -57,6 +61,6 @@ class AccountMove(models.Model):
         }
 
         if attachment_fields.intersection(vals.keys()):
-            self._sync_document_attachments()
+            self._sync_attachments_to_chatter()
 
         return res
