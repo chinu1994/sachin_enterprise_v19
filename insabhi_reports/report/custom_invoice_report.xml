@@ -18,11 +18,14 @@
             <t t-foreach="docs" t-as="o">
                 <t t-call="web.basic_layout">
                     <div class="page">
+                        <t t-set="global_idx" t-value="0"/>
 
-                        <t t-foreach="docs" t-as="doc">
-                            <t t-set="idx" t-value="0"/>
-                            <t t-foreach="doc.invoice_line_ids" t-as="line">
-                                <t t-set="idx" t-value="idx + 1"/>
+                        <t t-foreach="o.invoice_line_ids" t-as="line">
+
+                            <t t-set="repeat_count" t-value="line.no_of_lebel if line.no_of_lebel and line.no_of_lebel &gt; 0 else 1"/>
+
+                            <t t-foreach="range(repeat_count)" t-as="r">
+                                <t t-set="global_idx" t-value="global_idx + 1"/>
 
                                 <div style="
                                     border:1px solid black;
@@ -35,27 +38,23 @@
                                     font-size:11.8px;
                                 ">
                                     <span style="font-weight: normal !important;">
-                                        <span t-esc="doc.name"/>
+                                        <span t-esc="o.name"/>
                                     </span>
-                                     <span style="font-weight: normal !important;">
-                                        SR No :
-                                         <span t-esc="idx"/>
-                                     </span>
                                     <span style="font-weight: normal !important;">
-                                         PO No.:
-                                         <span t-esc="doc.po_no"/>
-                                     </span>
+                                        SR No : <span t-esc="global_idx"/>
+                                    </span>
+                                    <span style="font-weight: normal !important;">
+                                        PO No.: <span t-esc="o.po_no"/>
+                                    </span>
                                     <span style="margin-left:2px;font-weight: normal !important;">
                                         <span t-esc="line.product_id.name"/>
                                     </span>
-
                                     <span style="margin-left:2px;font-weight: normal !important;">
-                                        Qty :
-                                        <span t-esc="line.quantity"/>
+                                        Qty : <span t-esc="line.quantity"/>
                                     </span>
-
                                 </div>
                             </t>
+
                         </t>
                     </div>
                 </t>

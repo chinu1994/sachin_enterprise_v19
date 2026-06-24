@@ -18,3 +18,12 @@ class AccountMove(models.Model):
                 mo_name = mos.name
 
             rec.manufacturing_no = mo_name
+
+
+class AccountMoveLine(models.Model):
+    _inherit = 'account.move.line'
+
+    no_of_lebel = fields.Integer(
+        string='No of Label',
+        default=0,
+    )
