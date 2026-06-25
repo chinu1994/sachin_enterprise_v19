@@ -17,7 +17,23 @@
         <field name="inherit_id" ref="account.view_move_form"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='invoice_line_ids']//field[@name='quantity']" position="before">
-                <field name="no_of_lebel" optional="show"/>
+
+
+    <field name="no_of_lebel" optional="show" readonly="1" force_save="1"/>
+    <button name="action_increment_lebel"
+            type="object"
+            icon="fa-plus"
+            string=""
+            class="btn btn-sm btn-secondary"
+            context="{'no_reload': True}"/>
+
+     <button name="action_decrement_lebel"
+            type="object"
+            icon="fa-minus"
+            string=""
+            class="btn btn-sm btn-secondary"
+            context="{'no_reload': True}"/>
+
             </xpath>
         </field>
     </record>
