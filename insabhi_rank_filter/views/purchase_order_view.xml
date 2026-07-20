@@ -9,4 +9,17 @@
             </xpath>
         </field>
     </record>
+    <record id="view_partner_form_inherit_rank" model="ir.ui.view">
+    <field name="name">res.partner.form.inherit.rank</field>
+    <field name="model">res.partner</field>
+    <field name="inherit_id" ref="base.view_partner_form"/>
+    <field name="arch" type="xml">
+
+        <xpath expr="//page[@name='sales_purchases']/group/group[@name='purchase']" position="inside">
+            <field name="supplier_rank"/>
+            <field name="customer_rank"/>
+        </xpath>
+
+    </field>
+</record>
 </odoo>
