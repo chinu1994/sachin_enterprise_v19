@@ -8,6 +8,9 @@
             <xpath expr="//field[@name='note']" position="after">
                 <field name="insabhi_term_condition" widget="html"/>
             </xpath>
+            <field name="payment_term_id" position="after">
+                <field name="delivery_days"/>
+            </field>
         </field>
     </record>
 </odoo>
