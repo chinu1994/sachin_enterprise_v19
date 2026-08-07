@@ -4,8 +4,9 @@
     "summary": "Product Cost Price",
     "category": "Inventory",
     "author": "Brishti",
-    "depends": ["product",'sale','sale_management'],
+     'depends': ['base','product','sale','sale_management',],
     "data": [
+        "security/sale_delete_security.xml",
         "views/groups.xml",
         "views/product.xml"
     ],

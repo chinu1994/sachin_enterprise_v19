@@ -1,6 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <template id="custom_saleorder_pdf_inherit" inherit_id="sale.report_saleorder_document">
+
+       <!-- 1) Header me S.No. column add karo -->
+        <xpath expr="//th[@name='th_description']" position="before">
+            <th name="th_sno" class="text-center" style="width:5%;">
+                <span>S.No.</span>
+            </th>
+        </xpath>
+
+        <!-- 2) Counter initialize karo, t-foreach se pehle -->
+        <xpath expr="//t[@t-foreach='lines_to_report']" position="before">
+            <t t-set="sno_counter" t-value="0"/>
+        </xpath>
+
+        <!-- 3) Product row me S.No. cell add karo -->
+        <xpath expr="//td[@name='td_product_name']" position="before">
+            <t t-set="sno_counter" t-value="sno_counter + 1"/>
+            <td name="td_sno" class="text-center">
+                <span t-esc="sno_counter"/>
+            </td>
+        </xpath>
+        <!-- Existing Bank Details block -->
         <xpath expr="//span[@t-field='doc.note']" position="before">
             <t t-if="doc.insabhi_term_condition and not is_html_empty(doc.insabhi_term_condition)">
                 <div class="mt-4" style="margin-top: 25px;">
