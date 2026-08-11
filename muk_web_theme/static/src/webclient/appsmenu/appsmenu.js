@@ -8,8 +8,10 @@ import { Dropdown } from "@web/core/dropdown/dropdown";
 export class AppsMenu extends Dropdown {
     setup() {
     	super.setup();
-    	this.commandPaletteOpen = false;
-        this.commandService = useService("command");
+   this.state.isOpen = true;
+
+    this.commandPaletteOpen = false;
+	this.commandService = useService("command");
     	if (user.activeCompany.has_background_image) {
             this.imageUrl = url('/web/image', {
                 model: 'res.company',
