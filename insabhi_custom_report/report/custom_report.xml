@@ -51,4 +51,24 @@
                 </t>
          </xpath>
     </template>
+     <template id="sale_order_portal_content_serial_no"
+              inherit_id="sale.sale_order_portal_content">
+
+        <!-- Add S.No. header before Products -->
+        <xpath expr="//table[@id='sales_order_table']/thead/tr/th[@id='product_name_header']"
+               position="before">
+            <th class="text-start" id="serial_no_header">
+                S.No.
+            </th>
+        </xpath>
+
+        <!-- Add serial number in product lines -->
+        <xpath expr="//tr[@name='tr_product']/td[@name='td_product_name']"
+               position="before">
+            <td name="td_serial_no" class="text-start">
+                <t t-out="line_index + 1"/>
+            </td>
+        </xpath>
+
+    </template>
 </odoo>
