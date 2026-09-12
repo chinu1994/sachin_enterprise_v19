@@ -166,6 +166,16 @@ class StockRule(models.Model):
         return move_values
 
 
+class ProductAttributeValue(models.Model):
+    _inherit = ('product.attribute.value')
 
 
-
+    @api.constrains('name', 'attribute_id')
+    def _check_duplicate_attribute_value(self):
+        for record in self:
+            if not record.name or not record.attribute_id: continue
+            duplicate = self.search(
+                [('id', '!=', record.id), ('attribute_id', '=', record.attribute_id.id), ('name', '=', record.name), ], limit=1)
+            if duplicate: raise ValidationError(
+                'Duplicate Attribute Value is not allowed.\n\n' 'The value "%s" already exists for the attribute "%s".' % (
+                    record.name, record.attribute_id.name))
