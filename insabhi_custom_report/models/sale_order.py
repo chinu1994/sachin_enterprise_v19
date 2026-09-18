@@ -65,7 +65,6 @@ class SaleOrderLine(models.Model):
         'mrp.bom',
         string='BoM',
         copy=True,
-        check_company=True,
         domain="""
             [
                 '|',
