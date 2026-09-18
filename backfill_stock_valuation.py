@@ -5,11 +5,11 @@ import xmlrpc.client
 # ODOO CONNECTION
 # ============================================================
 
-ODOO_URL = "http://localhost:8521"
-DB_NAME = "sachin_15sep_db"
+ODOO_URL = "https://minimum-agatha.bnr.la"
+DB_NAME = "live"
 
 USERNAME = "admin"
-PASSWORD = "admin"
+PASSWORD = "admin@2026"
 
 
 # ============================================================
