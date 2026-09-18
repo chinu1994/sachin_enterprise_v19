@@ -15,12 +15,12 @@
             <field name="payment_term_id" position="after">
                 <field name="delivery_days"/>
             </field>
-             <xpath expr="//field[@name='order_line']//list//field[@name='product_uom_qty']"
-                   position="before">
+<!--             <xpath expr="//field[@name='order_line']//list//field[@name='product_uom_qty']"-->
+<!--                   position="before">-->
 
-                <field name="bom_id"/>
+<!--                <field name="bom_id"/>-->
 
-            </xpath>
+<!--            </xpath>-->
              <xpath expr="//page[@name='other_information']//field[@name='client_order_ref']"
                position="after">
             <field name="bom_restrictions_remove"
