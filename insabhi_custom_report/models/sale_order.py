@@ -108,7 +108,7 @@ class StockRule(models.Model):
 
 
 class ProductAttributeValue(models.Model):
-    _inherit = ('product.attribute.value')
+    _inherit = 'product.attribute.value'
 
 
     @api.constrains('name', 'attribute_id')
