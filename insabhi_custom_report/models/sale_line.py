@@ -1,7 +1,7 @@
 from odoo import models, api, fields, _
 from odoo.exceptions import ValidationError
 
-class SaleOrderLine(models.Model):
+class SaleOrderLines(models.Model):
     _inherit = 'sale.order.line'
 
     bom_id = fields.Many2one(
