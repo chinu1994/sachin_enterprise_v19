@@ -3,7 +3,7 @@
     'version': '1.0',
     'category': 'Sales',
     'summary': 'Sale Order Report',
-    'depends':  ['sale', 'sale_management', 'account','stock','mrp',],
+    'depends':  ['sale', 'sale_management', 'account','stock','mrp_workorder',],
     'data': [
         "security/ir.model.access.csv",
         "views/sale_order_views.xml",
