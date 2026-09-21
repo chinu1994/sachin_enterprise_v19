@@ -468,14 +468,21 @@ class StockMove(models.Model):
         """
         Build a unique, human-readable reference for the journal entry.
 
-        Format: ``<PREFIX>/<picking_or_move_name>/<move_id>``
-
-        The move id suffix guarantees uniqueness when a single picking contains
-        multiple product lines that each generate their own valuation entry.
+        Format: <PREFIX>/<picking_or_move_reference>/<move_id>
         """
         self.ensure_one()
-        base = self.picking_id.name if self.picking_id else (self.name or "MV")
+
+        if self.picking_id:
+            base = self.picking_id.name
+        elif self.raw_material_production_id:
+            base = self.raw_material_production_id.name
+        elif self.production_id:
+            base = self.production_id.name
+        else:
+            base = f"MV-{self.id}"
+
         return f"{prefix}/{base}/{self.id}"
+
 
     def _create_valuation_entry(self, debit_acc, credit_acc, amount, ref, label=""):
         """
