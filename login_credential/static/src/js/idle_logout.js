@@ -12,6 +12,8 @@ let lastLoggedActivityTs = 0;
 const INACTIVE_TIME =60 * 60 * 1000; // 1 hour
 const LOG_COOKIE_NAME = "auto_logout_log";
 const LAST_ACTIVITY_LS_KEY = "odoo_last_activity_ts";
+const MAX_LOG_ENTRIES = 100;
+const LOG_THROTTLE_MS = 5000;
 
 
 
