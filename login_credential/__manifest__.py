@@ -11,7 +11,7 @@
     ],
 'assets': {
         'web.assets_backend': [
-            'login_credential/static/src/js/idle_logout.js',
+            # 'login_credential/static/src/js/idle_logout.js',
         ],
     },
     "installable": True,
